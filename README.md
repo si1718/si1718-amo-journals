@@ -1,4 +1,4 @@
-# si1718-amo-sandbox
+# si1718-amo-journals
 #
-# Welcome to my repository!
-#
+# This is Andreea's repository for 'MicroServicios'
+# Mine is Journals
