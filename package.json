@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/si1718/si1718-amo-journals/issues"
   },
-  "homepage": "https://github.com/si1718/si1718-amo-journals#readme"
+  "homepage": "https://github.com/si1718/si1718-amo-journals#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "mongodb": "^2.2.33",
+    "path": "^0.12.7"
+  }
 }
