@@ -198,28 +198,26 @@ app.put(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
 
 });
 
-/*
+
 // DELETE over a collection
-app.delete(BASE_API_PATH, + "/journals", function(request, response) {
+app.delete(BASE_API_PATH + "/journals", function (request, response) {
     console.log("INFO: New DELETE request to /journals");
-    db.remove({}, {multi:true}, function(error, numRemovedJournals) {
-        if (error) {
-            console.error("WARNING: Error removing data from the Database");
+    db.remove({}, {multi: true}, function (err, numRemoved) {
+        if (err) {
+            console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // 500: Internal server error
-        }
-        else {
-            if (numRemovedJournals > 0) {
-                console.log("INFO: All the journals (" + numRemovedJournals + ") have been removed sucessfully, sending 204...");
-                response.sendStatus(204); // 204: No content
-            }
-            else {
+        } else {
+            if (numRemoved > 0) {
+                console.log("INFO: All the journals (" + numRemoved + ") have been succesfully deleted, sending 204...");
+                response.sendStatus(204); // 204: No Content
+            } else {
                 console.log("WARNING: There are no journals to delete");
-                response.sendStatus(404); // 404: Not found
+                response.sendStatus(404); // 404: Not Found
             }
         }
     });
 });
-*/
+
 
 // Method 8: DELETE over a single resource
 app.delete(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
