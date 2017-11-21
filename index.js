@@ -199,7 +199,7 @@ app.put(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
 });
 
 
-// DELETE over a collection
+// Method 7:  DELETE over a collection
 app.delete(BASE_API_PATH + "/journals", function (request, response) {
     console.log("INFO: New DELETE request to /journals");
     db.remove({}, {multi: true}, function (err, numRemoved) {
