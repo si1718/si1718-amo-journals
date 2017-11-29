@@ -1,0 +1,34 @@
+<h2>Journals</h2>
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Editorial</th>
+        <th>Area</th>
+        <th>ISSN</th>
+        <th>Actions</th>
+    </tr>
+    <thead>
+        <tbody>
+            <tr>
+                <td><input ng-model="newJournal.title" /></td>
+                <td><input ng-model="newJournal.editorial" /</td>
+                    <td><input ng-model="newJournal.area" /</td>
+                        <td><input ng-model="newJournal.issn" /</td>
+
+                            <td>
+                                <button class="btn btn-primary" ng-click="addJournal()"> Add </button>
+                            </td>
+
+            </tr>
+            <tr ng-repeat="journal in journals">
+                <td><a href="#!/journal/{{journal.idJournal}}">{{journal.title}}</a></td>
+                <td>{{journal.editorial}}</td>
+                <td>{{journal.area}}</td>
+                <td>{{journal.issn}}</td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteJournal(journal.idJournal)"> Delete </button>
+                </td>
+            </tr>
+        </tbody>
+    </thead>
+</table>

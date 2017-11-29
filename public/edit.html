@@ -1,0 +1,26 @@
+<h2>Edit journal {{journalTitle}} </h2>
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Editorial</th>
+        <th>Area</th>
+        <th>ISSN</th>
+        <th>Actions</th>
+    </tr>
+    <thead>
+        <tbody>
+            <tr>
+                <td><input ng-model="newJournal.title" /></td>
+                <td><input ng-model="newJournal.editorial" /</td>
+                    <td><input ng-model="newJournal.area" /</td>
+                        <td>{{newJournal.issn}}</td>
+
+                            <td>
+                                <button class="btn btn-info" onclick="location.href='#!';">Back</button>
+                                <button class="btn btn-primary" ng-click="updateJournal()"> Update </button>
+                            </td>
+
+          
+        </tbody>
+    </thead>
+</table>

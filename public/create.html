@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Create journal</h2>
+    <br/>
+    <br/>
+    <b>Title: </b><input ng-model="newJournal.title" />
+    <br/>
+    <b>Editorial: </b><input ng-model="newJournal.editorial" />
+    <br/>
+    <b>Area: </b><input ng-model="newJournal.area" />
+    <br/>
+     <b>ISSN: </b><input ng-model="newJournal.issn" />
+    <br/>
+    <div>
+        {{error}}
+
+    </div>
+
+    <button class="btn btn-info" onclick="location.href='#!';">Back</button>
+    <button class="btn btn-primary" ng-click="createPatent()">Create</button>
+</div>

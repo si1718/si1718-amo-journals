@@ -1,11 +1,11 @@
 "use strict";
-
+/* global __dirname */
 var express = require("express");
 var bodyParser = require('body-parser');
 var helmet = require("helmet");
 var BASE_API_PATH = "/api/v1";
 var port = (process.env.PORT || 10000);
-
+var path = require("path");
 
 // Database related variables
 var MongoClient = require("mongodb").MongoClient;
@@ -26,6 +26,7 @@ MongoClient.connect(mdbURL, { native_parser: true }, function(error, database) {
 });
 
 var app = express();
+app.use(express.static(path.join(__dirname,"public")));
 app.use(bodyParser.json()); //use default JSON encoding/decoding
 app.use(helmet());
 
@@ -72,28 +73,7 @@ app.get(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
     }
 });
 
-/* Method 3: GET journals filtered by editorial
-app.get(BASE_API_PATH + "/journals/:editorial", function(request, response) {
-    var editorial = request.params.editorial;
-    if (!editorial) {
-        console.log("WARNING: New GET request to /journals/:editorial without editorial. Sending code 400...");
-        response.sendStatus(400); // 400: Bad request
-    }
-    else {
-        console.log("INFO: New GET request to /journals/" + editorial);
-        db.find({ "editorial": editorial }, function(error, filteredJournalByEditorial) {
-            if (error) {
-                console.error("WARNING: Data extraction from database failed - single resource");
-                response.sendStatus(500); // 500: Internal server error
-            }
-            else {
-                console.log("INFO: Sending journals filtered by Editorial: " + JSON.stringify(filteredJournalByEditorial, 2, null));
-                response.send(filteredJournalByEditorial);
-            }
-        });
-    }
-});
-*/
+
 //Method 3: POST a journal 
 app.post(BASE_API_PATH + "/journals", function(request, response) {
     var newJournal = request.body;
@@ -171,18 +151,14 @@ app.put(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
             response.sendStatus(422); // 422: Unprocessable entity
         }
         else {
-            db.findOne({ "idJournal": idJournal }, function(error, journal) {
+            db.findOne({ "idJournal": idJournal }, (error, journal) => {
                 if (error) {
                     console.error("WARNING: Data extraction from database failed - update single resource (find journal with id)");
-                    journal.sendStatus(500); // 500: Internal server error
+                    response.sendStatus(500); // 500: Internal server error
                 }
                 else {
                     if (journal) {
-                        updatedJournal.issn = journal.issn;
-                        updatedJournal.title = journal.title;
-                        updatedJournal.area = journal.area;
-                        updatedJournal.editorial = journal.editorial;
-                        db.update({ "idJournal": idJournal }, updatedJournal);
+                        db.updateOne({idJournal: idJournal }, updatedJournal);
                         console.log("INFO: Modifying journal with idJournal " + idJournal + "with data " + JSON.stringify(updatedJournal, 2, null));
                         response.send(updatedJournal);
                     }
@@ -228,14 +204,14 @@ app.delete(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
     }
     else {
         console.log("INFO: New DELETE request to /journals/" + idJournal);
-        db.remove({ "idJournal": idJournal }, {}, function(error, numRemovedJournals) {
+        db.remove({ "idJournal": idJournal }, {}, function(error, res) {
             if (error) {
                 console.log("WARNING: Error removing data from database");
                 response.sendStatus(500); // 500: Internal server error
             }
             else {
-                console.log("INFO: Journals removed: " + numRemovedJournals);
-                if (numRemovedJournals == 1) {
+                console.log("INFO: Journals removed: " + res);
+                if (res) {
                     console.log("INFO: The journal with id " + idJournal + "has been sucessfully deleted, sending 204");
                     response.sendStatus(204); // 204: No content
                 }
