@@ -1,34 +1,54 @@
-<h2>Journals</h2>
-<table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Editorial</th>
-        <th>Area</th>
-        <th>ISSN</th>
-        <th>Actions</th>
-    </tr>
-    <thead>
-        <tbody>
-            <tr>
-                <td><input ng-model="newJournal.title" /></td>
-                <td><input ng-model="newJournal.editorial" /</td>
-                    <td><input ng-model="newJournal.area" /</td>
-                        <td><input ng-model="newJournal.issn" /</td>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Journals</h1>
+        <p>List of journals where the researchers of the University of Sevilla have published.</p>
+    </div>
+</div>
 
-                            <td>
-                                <button class="btn btn-primary" ng-click="addJournal()"> Add </button>
-                            </td>
+<div class="container">
+    <li><a href="#!/search" >Go to Advanced Search</a></li>
+    <br/>
+    <br/>
+</div>
+<div class="container">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tr class>
+                        <th>Title</th>
+                        <th>Editorial</th>
+                        <th>Area</th>
+                        <th>ISSN</th>
+                        <th>Actions</th>
+                    </tr>
+                    <thead>
+                        <tbody>
+                            <tr>
+                                <td><input ng-model="newJournal.title" /></td>
+                                <td><input ng-model="newJournal.editorial" /</td>
+                                    <td><input ng-model="newJournal.area" /</td>
+                                        <td><input ng-model="newJournal.issn" /</td>
 
-            </tr>
-            <tr ng-repeat="journal in journals">
-                <td><a href="#!/journal/{{journal.idJournal}}">{{journal.title}}</a></td>
-                <td>{{journal.editorial}}</td>
-                <td>{{journal.area}}</td>
-                <td>{{journal.issn}}</td>
-                <td>
-                    <button class="btn btn-danger" ng-click="deleteJournal(journal.idJournal)"> Delete </button>
-                </td>
-            </tr>
-        </tbody>
-    </thead>
-</table>
+                                            <td>
+                                                <button class="btn btn-primary" ng-click="addJournal()"> Add </button>
+                                            </td>
+
+                            </tr>
+                            <tr ng-repeat="journal in journals">
+                                <td><a href="#!/journal/{{journal.idJournal}}">{{journal.title}}</a></td>
+                                <td>{{journal.editorial}}</td>
+                                <td>{{journal.area}}</td>
+                                <td>{{journal.issn}}</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="deleteJournal(journal.idJournal)"> Delete </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

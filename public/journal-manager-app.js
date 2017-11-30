@@ -1,19 +1,22 @@
 /* global angular */
 angular.module("JournalManagerApp", ["ngRoute"])
-    .config(function ($routeProvider){
-        
+    .config(function($routeProvider) {
+
         $routeProvider
-            .when("/",{
+            .when("/", {
                 templateUrl: "list.html",
-                controller : "ListCtrl"
-            }).when("/journal/:idJournal",{
+                controller: "ListCtrl"
+            }).when("/journal/:idJournal", {
                 templateUrl: "edit.html",
-                controller : "EditCtrl"
+                controller: "EditCtrl"
             }).when("/create", {
                 templateUrl: "create.html",
-                controller : "CreateCtrl"
+                controller: "CreateCtrl"
+            }).when("/search?:params", {
+                templateUrl: "search.html",
+                controller: "SearchCtrl"
             });
-        
-        console.log("INFO: App Initialized");            
-        
+
+        console.log("INFO: App Initialized");
+
     });
