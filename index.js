@@ -6,7 +6,7 @@ var helmet = require("helmet");
 var BASE_API_PATH = "/api/v1";
 var port = (process.env.PORT || 10000);
 var path = require("path");
-
+var cors = require("cors");
 // Database related variables
 var MongoClient = require("mongodb").MongoClient;
 var mdbURL = "mongodb://andopr:andopr@ds261745.mlab.com:61745/si1718-amo-journals";
@@ -29,7 +29,7 @@ var app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json()); //use default JSON encoding/decoding
 app.use(helmet());
-
+app.use(cors());
 
 // Method 9: GET by url params
 app.get(BASE_API_PATH + "/journals/search", function(request, response) {
