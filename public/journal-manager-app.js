@@ -15,6 +15,9 @@ angular.module("JournalManagerApp", ["ngRoute"])
             }).when("/search?:params", {
                 templateUrl: "search.html",
                 controller: "SearchCtrl"
+            }).when("/graph", {
+                templateUrl: "graph.html",
+                controller: "GraphCtrl"
             });
 
         console.log("INFO: App Initialized");
