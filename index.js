@@ -30,6 +30,40 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json()); //use default JSON encoding/decoding
 app.use(helmet());
 
+
+// Method 9: GET by url params
+app.get(BASE_API_PATH + "/journals/search", function(request, response) {
+    let entered_title = request.query.title;
+    let entered_editorial = request.query.editorial;
+    let entered_area = request.query.area;
+    let entered_issn = request.query.issn;
+
+    var my_query = { "$and": [] };
+    
+    if (entered_title) {
+        my_query.$and.push({ "title": { $regex: ".*" + entered_title + ".*" } });
+    }
+    if (entered_editorial) {
+        my_query.$and.push({ "editorial":  { $regex: ".*" + entered_editorial + ".*" } });
+    }
+    if (entered_area) {
+        my_query.$and.push({ "area": { $regex: ".*" + entered_area + ".*" } });
+    }
+    if (entered_issn) {
+        my_query.$and.push({"issn" : {$regex : ".*"+entered_issn+".*"}});
+    }
+    db.find(my_query).toArray(function(error, journals) {
+
+        if (error) {
+            response.sendStatus(500); // internal server error
+        }
+        else {
+            response.send(journals);
+        }
+    }); 
+});
+
+
 // Method 1: GET a collection of journals
 app.get(BASE_API_PATH + "/journals", function(request, response) {
     console.log("INFO: New GET request /journals");
@@ -45,9 +79,7 @@ app.get(BASE_API_PATH + "/journals", function(request, response) {
     });
 });
 
-
-
-/* // Method 2: GET journals filtered by idJournal: One single resource expected
+ // Method 2: GET journals filtered by idJournal: One single resource expected
     app.get(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
         var idJournal = request.params.idJournal;
         if (!idJournal) {
@@ -74,7 +106,7 @@ app.get(BASE_API_PATH + "/journals", function(request, response) {
             });
         }
     });
-*/
+
 
 //Method 3: POST a journal 
 app.post(BASE_API_PATH + "/journals", function(request, response) {
@@ -226,38 +258,4 @@ else {
         }
     });
 }
-});
-
-// Method 9: GET by url params
-app.get(BASE_API_PATH + "/journals/search", function(request, response) {
-    let entered_title = request.query.title;
-    let entered_editorial = request.query.editorial;
-    let entered_area = request.query.area;
-    let entered_issn = request.query.issn;
-
-    var my_query = { "$and": [] };
-    
-    if (entered_title) {
-        my_query.$and.push({ "title": { $regex: ".*" + entered_title + ".*" } });
-    }
-    if (entered_editorial) {
-        my_query.$and.push({ "editorial":  { $regex: ".*" + entered_editorial + ".*" } });
-    }
-    if (entered_area) {
-        my_query.$and.push({ "area": { $regex: ".*" + entered_area + ".*" } });
-    }
-    if (entered_issn) {
-        my_query.$and.push({"issn" : {$regex : ".*"+entered_issn+".*"}});
-    }
-    db.find(my_query).toArray(function(error, journals) {
-
-        if (error) {
-            response.sendStatus(500); // internal server error
-            console.log("Error 500");
-        }
-        else {
-            response.send(journals);
-           console.log("Punto", journals);
-        }
-    }); 
 });

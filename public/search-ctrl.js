@@ -10,7 +10,7 @@ angular.module("JournalManagerApp")
                 .get(API_URL + "search" + request)
                 .then(function(response) {
                     if (response.data.length == 0) {
-                        alert("No matches found!");
+                        alert("There are no journals to match your search");
                     }
                     $scope.journals = response.data;
                 });
