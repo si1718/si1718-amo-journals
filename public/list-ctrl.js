@@ -19,7 +19,21 @@ angular.module("JournalManagerApp")
                 .then(function(response) {
                     refresh();
                 }, function(error) {
-                    alert(error.data);
+                    console.log(error.status);
+
+                    if (String(error.status) != '200') {
+                        switch (String(error.status)) {
+                            case '422':
+                                alert("Please make sure that there are no empty fields");
+                                break;
+                            case '409':
+                                alert("There is another journal with same ISSN");
+                                break;
+                            default:
+                                alert("Error, please contact the administrator");
+                        }
+
+                    }
 
                 });
         };
