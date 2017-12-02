@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Edit journal </h1>
+    </div>
+</div>
+<div class="container">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th>Title</th>
+                        <th>Editorial</th>
+                        <th>Area</th>
+                        <th>ISSN</th>
+                        <th>Actions</th>
+                    </tr>
+                    <thead>
+                        <tbody>
+                            <tr>
+                                <td><input ng-model="newJournal.title" /></td>
+                                <td><input ng-model="newJournal.editorial" /</td>
+                                    <td><input ng-model="newJournal.area" /</td>
+                                        <td>{{newJournal.issn}}</td>
+
+                                        <td>
+                                            <button class="btn btn-info" onclick="location.href='#!';">Back</button>
+                                            <button class="btn btn-primary" ng-click="updateJournal()"> Update </button>
+                                        </td>
+
+
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

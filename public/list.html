@@ -1,16 +1,11 @@
-<div class="container">
-    <div class="jumbotron">
-        <h1>Journals</h1>
-        <p>List of journals where the researchers of the University of Sevilla have published</p>
-    </div>
-</div>
+<h1 class="section-heading">Journals</h1>
 
 <div class="container">
-    <h2><a href="#!/search" >Go to Advanced Search</a></h2>
+    <h2><a href="#!/search">Go to Advanced Search</a></h2>
     <br/>
 </div>
 <div class="container">
-    <h2><a href="#!/graph" >Go to Graph Page</a></h2>
+    <h2><a href="#!/graph">Go to Graph Page</a></h2>
     <br/>
 </div>
 <div class="container">
@@ -23,6 +18,7 @@
                         <th>Editorial</th>
                         <th>Area</th>
                         <th>ISSN</th>
+                        <th>Keywords</th>
                         <th>Actions</th>
                     </tr>
                     <thead>
@@ -32,6 +28,7 @@
                                 <td><input ng-model="newJournal.editorial" /</td>
                                     <td><input ng-model="newJournal.area" /</td>
                                         <td><input ng-model="newJournal.issn" /</td>
+                                             <td><input ng-model="newJournal.keywords" /</td>
 
                                             <td>
                                                 <button class="btn btn-primary" text="Add" ng-click="addJournal()"> Add </button>
@@ -43,6 +40,7 @@
                                 <td>{{journal.editorial}}</td>
                                 <td>{{journal.area}}</td>
                                 <td>{{journal.issn}}</td>
+                                <td>{{journal.keywords}}</td>
                                 <td>
                                     <button class="btn btn-danger" ng-click="deleteJournal(journal.idJournal)"> Delete </button>
                                 </td>

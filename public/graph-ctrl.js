@@ -1,6 +1,7 @@
 angular.module("JournalManagerApp")
     .controller("GraphCtrl", ["$scope", "$http", function($scope, $http) {
         function refresh() {
+
             $http
                 .get("/api/v1/journals")
                 .then(function(response) {
@@ -29,7 +30,7 @@ angular.module("JournalManagerApp")
                     console.log(editorial3);
                     var editorial4 = countInEditorials(editorialsList, "Oxford University Press");
                     console.log(editorial4);
-                    
+
                     var others = editorialsList.length - (editorial1 + editorial2 + editorial3 + editorial4);
                     console.log(others);
 

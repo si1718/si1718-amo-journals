@@ -35,6 +35,13 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="col-md-3 control-label">Keywords: </label>
+            <div class="col-md-3">
+                <input ng-model="search.keywords" id="keywords" name="keywords" type="keywords" class="form-control input-md">
+            </div>
+        </div>
+
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="submit"></label>
@@ -46,6 +53,8 @@
                 <button class="btn btn-info" onclick="location.href='#!';">Back</button>
             </div>
         </div>
+
+
 
     </fieldset>
 </form>
@@ -61,8 +70,9 @@
             <th>Title</th>
             <th>Editorial</th>
             <th>Area</th>
+            <th>Keywords</th>
             <th>ISSN</th>
-            <th></th>
+          
         </tr>
     </thead>
     <tbody>
@@ -70,6 +80,7 @@
             <td>{{journal.title}}</td>
             <td>{{journal.editorial}}</td>
             <td>{{journal.area}}</td>
+            <td>{{journal.keywords}}</td>
             <td>{{journal.issn}}</td>
     </tbody>
 

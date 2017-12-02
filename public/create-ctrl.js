@@ -7,6 +7,10 @@ angular.module("JournalManagerApp")
         }
 
         $scope.createJournal = function(){
+            
+            if ($scope.newJournal.keywords && $scope.newJournal.keywords.length > 0) {
+                $scope.new_proceeding.keywords = $scope.new_proceeding.keywords.split(",");
+            }
             $http
                 .post("/api/v1/journals/", $scope.newJournal)
                 .then(function(response){

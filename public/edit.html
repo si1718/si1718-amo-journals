@@ -1,38 +1,40 @@
-<div class="container">
-    <div class="jumbotron">
-        <h1>Edit journal </h1>
+<div class="col-xs-12">
+    <div class="row">
+        <h1 class="display-1">Edit a Journal</h1>
+
     </div>
 </div>
-<div class="container">
-    <div class="col-xs-12">
-        <div class="row">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <tr>
-                        <th>Title</th>
-                        <th>Editorial</th>
-                        <th>Area</th>
-                        <th>ISSN</th>
-                        <th>Actions</th>
-                    </tr>
-                    <thead>
-                        <tbody>
-                            <tr>
-                                <td><input ng-model="newJournal.title" /></td>
-                                <td><input ng-model="newJournal.editorial" /</td>
-                                    <td><input ng-model="newJournal.area" /</td>
-                                        <td>{{newJournal.issn}}</td>
 
-                                        <td>
-                                            <button class="btn btn-info" onclick="location.href='#!';">Back</button>
-                                            <button class="btn btn-primary" ng-click="updateJournal()"> Update </button>
-                                        </td>
-
-
-                        </tbody>
-                    </thead>
-                </table>
+<!-- Form part -->
+<div class="col-xs-12" ng-hide="hideForm">
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input ng-model="newJournal.title" id="title" class="form-control" value="{{newJournal.title}}" />
             </div>
-        </div>
+            <div class="form-group">
+                <label for="editorial">Editorial</label>
+                <input ng-model="newJournal.editorial" id="editorial" class="form-control" value="{{newJournal.editorial}}" />
+            </div>
+            <div class="form-group">
+                <label for="area">Area</label>
+                <input ng-model="newJournal.area" id="area" class="form-control" value="{{newJournal.area}}" />
+            </div>
+            <div class="form-group">
+                <label for="issn">ISSN</label>
+                <input ng-model="newJournal.issn" id="issn" class="form-control" value="{{newJournal.issn}}" />
+            </div>
+            <div class="form-group">
+                <label for="keywords">Keywords</label>
+                <textarea class="form-control" id="keywords" ng-model="newJournal.keywords" rows="3" aria-describedby="keywordss_help" value="{{newJournal.keywords}}"></textarea>
+                <small id="keywords_help" class="form-text text-muted">Separate the keywords by commas</small>
+            </div>
+
+            <td>
+                <button class="btn btn-info" onclick="location.href='#!';">Back</button>
+                <button class="btn btn-primary" ng-click="updateJournal()"> Update </button>
+            </td>
+        </form>
     </div>
 </div>

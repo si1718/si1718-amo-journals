@@ -1,20 +1,39 @@
-<div class="container">
-    <h2>Create journal</h2>
-    <br/>
-    <br/>
-    <b>Title: </b><input ng-model="newJournal.title" />
-    <br/>
-    <b>Editorial: </b><input ng-model="newJournal.editorial" />
-    <br/>
-    <b>Area: </b><input ng-model="newJournal.area" />
-    <br/>
-     <b>ISSN: </b><input ng-model="newJournal.issn" />
-    <br/>
-    <div>
-        {{error}}
-
+<div class="col-xs-12">
+    <div class="row">
+        <h1 class="display-1">Create a Journal</h1 </div>
     </div>
 
-    <button class="btn btn-info" onclick="location.href='#!';">Back</button>
-    <button class="btn btn-primary" text = "Create" ng-click="createPatent()">Create</button>
-</div>
+    <!-- Form part -->
+    <div class="container" ng-hide="hideForm">
+        <div class="col-xs-12">
+            <div class="row">
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input ng-model="newJournal.title" id="title" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editorial">Editorial</label>
+                        <input ng-model="newJournal.editorial" id="editorial" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="area">Area</label>
+                        <input ng-model="newJournal.area" id="area" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issn">ISSN</label>
+                        <input ng-model="newJournal.issn" id="isSn" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keywords">Keywords</label>
+                        <textarea class="form-control" id="keywords" ng-model="newJournal.keywords" rows="3" aria-describedby="keywords_help"></textarea>
+                        <small id="keywords_help" class="form-text text-muted">Separate the keywords by commas</small>
+                    </div>
+                    <button class="btn btn-info" onclick="location.href='#!';">Back</button>
+                    <button class="btn btn-primary" text="Create" ng-click="createPatent()">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
