@@ -6,3 +6,7 @@
 .navbar-red .navbar-brand {
     color: #ffffff !important;
 }
+
+.table {
+    max-width: 100%;
+}

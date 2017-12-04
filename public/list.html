@@ -8,16 +8,17 @@
     <h2><a href="#!/graph">Go to Graph Page</a></h2>
     <br/>
 </div>
-<div class="container">
-    <div class="col-xs-12">
+<div class="container-fluid">
+    <div class="col-xs-12" ng-hide="hideTable">
         <div class="row">
             <div class="table-responsive">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-striped table-bordered">
                     <tr class>
                         <th>Title</th>
                         <th>Editorial</th>
                         <th>Area</th>
                         <th>ISSN</th>
+                        <th>Articles</th>
                         <th>Keywords</th>
                         <th>Actions</th>
                     </tr>
@@ -25,14 +26,15 @@
                         <tbody>
                             <tr>
                                 <td><input ng-model="newJournal.title" /></td>
-                                <td><input ng-model="newJournal.editorial" /</td>
-                                    <td><input ng-model="newJournal.area" /</td>
-                                        <td><input ng-model="newJournal.issn" /</td>
-                                             <td><input ng-model="newJournal.keywords" /</td>
+                                <td><input ng-model="newJournal.editorial" /></td>
+                                <td><input ng-model="newJournal.area" /></td>
+                                <td><input ng-model="newJournal.issn" /></td>
+                                <td><input ng-model="newJournal.idArticle" /></td>
+                                <td><input ng-model="newJournal.keywords" /></td>
 
-                                            <td>
-                                                <button class="btn btn-primary" text="Add" ng-click="addJournal()"> Add </button>
-                                            </td>
+                                <td>
+                                    <button class="btn btn-primary" text="Add" ng-click="addJournal()"> Add </button>
+                                </td>
 
                             </tr>
                             <tr ng-repeat="journal in journals">
@@ -40,6 +42,7 @@
                                 <td>{{journal.editorial}}</td>
                                 <td>{{journal.area}}</td>
                                 <td>{{journal.issn}}</td>
+                                <td>{{journal.articleTitle}}</td>
                                 <td>{{journal.keywords}}</td>
                                 <td>
                                     <button class="btn btn-danger" ng-click="deleteJournal(journal.idJournal)"> Delete </button>

@@ -31,11 +31,9 @@ angular.module("JournalManagerApp")
             if ($scope.search.issn) {
                 request += "&issn=" + $scope.search.issn;
             }
-             if ($scope.search.keywords) {
-                request += "&keywords=" + $scope.search.keywords;
-            }
-
-
+  /*          if ($scope.search.idArticle) {
+                request += "&articlesTitles=" + $scope.search.articlesTitles;
+            }*/
 
             refresh(request);
         };

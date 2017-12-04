@@ -5,23 +5,17 @@ var API_URL = "/api/v1/journals/";
 angular.module("JournalManagerApp")
     .controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
         //a la función le damos tantos parámetros como dependencias hayamos definido 
-         function refresh() {
+        function refresh() {
             $http
                 .get(API_URL)
                 .then(function(response) {
                     $scope.journals = response.data;
                 });
+
+
         }
 
 
-      /*      function refresh(){
-                $http
-                .get("https://si1718-jpg-publications.herokuapp.com/api/v1/articles")
-                .then(function(response){
-                    $scope.articles = response.data;
-                })
-            }
-            */
         $scope.addJournal = function() {
             $http
                 .post(API_URL, $scope.newJournal)

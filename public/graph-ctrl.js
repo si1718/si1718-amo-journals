@@ -6,7 +6,7 @@ angular.module("JournalManagerApp")
                 .get("/api/v1/journals")
                 .then(function(response) {
                     $scope.data = response.data;
-                    console.log($scope.data)
+                    console.log($scope.data);
                     var editorialsList = [];
                     for (var i in $scope.data) {
                         var editorial = $scope.data[i].editorial;
@@ -22,6 +22,7 @@ angular.module("JournalManagerApp")
                         }
                         return count;
                     }
+
                     var editorial1 = countInEditorials(editorialsList, "Elsevier BV");
                     console.log(editorial1);
                     var editorial2 = countInEditorials(editorialsList, "Institute of Electrical and Electronics Engineers");
@@ -83,10 +84,14 @@ angular.module("JournalManagerApp")
                     });
 
 
+
                 });
+
         }
 
 
         refresh();
+
+
 
     }]);

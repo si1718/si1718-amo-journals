@@ -39,6 +39,7 @@ app.get(BASE_API_PATH + "/journals/search", function(request, response) {
     let entered_area = request.query.area;
     let entered_issn = request.query.issn;
     let entered_keywords = request.query.keywords;
+    let entered_idArticle = request.query.idArticle;
 
     var my_query = { "$and": [] };
 
@@ -54,12 +55,16 @@ app.get(BASE_API_PATH + "/journals/search", function(request, response) {
     if (entered_issn) {
         my_query.$and.push({ "issn": { $regex: ".*" + entered_issn + ".*" } });
     }
-    
-     if (entered_keywords) {
+
+    if (entered_keywords) {
         my_query.$and.push({ "keywords": { $regex: ".*" + entered_keywords + ".*" } });
     }
 
-    
+    if (entered_idArticle) {
+        my_query.$and.push({ "idArticle": { $regex: ".*" + entered_idArticle + ".*" } });
+    }
+
+
     db.find(my_query).toArray(function(error, journals) {
 
         if (error) {
@@ -126,7 +131,7 @@ app.post(BASE_API_PATH + "/journals", function(request, response) {
     else {
         console.log("INFO: New POST request to /journals with body: " + JSON.stringify(newJournal, 2, null));
 
-        if (!newJournal.title || !newJournal.editorial || !newJournal.issn || !newJournal.area) {
+        if (!newJournal.title || !newJournal.editorial || !newJournal.issn || !newJournal.area || !newJournal.idArticle || !newJournal.articleViewURL || !newJournal.articleTitle) {
             console.log("WARNING: The journal " + JSON.stringify(newJournal, 2, null) + "is not well-formed, sending 422...");
             response.sendStatus(422); // 422: Unprocessable entitiy
         }
