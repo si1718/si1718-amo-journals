@@ -131,7 +131,7 @@ app.post(BASE_API_PATH + "/journals", function(request, response) {
     else {
         console.log("INFO: New POST request to /journals with body: " + JSON.stringify(newJournal, 2, null));
 
-        if (!newJournal.title || !newJournal.editorial || !newJournal.issn || !newJournal.area || !newJournal.idArticle || !newJournal.articleViewURL || !newJournal.articleTitle) {
+        if (!newJournal.title || !newJournal.editorial || !newJournal.issn || !newJournal.area || !newJournal.idArticle) {
             console.log("WARNING: The journal " + JSON.stringify(newJournal, 2, null) + "is not well-formed, sending 422...");
             response.sendStatus(422); // 422: Unprocessable entitiy
         }

@@ -25,6 +25,7 @@ describe('Add Journal', function() {
             var randEditorial = makeString();
             var randArea = makeString();
             var randISSN = makeIdJournal();
+            var randIDArticle = makeString();
             
             randISSN = String(randISSN);
             
@@ -32,6 +33,8 @@ describe('Add Journal', function() {
             element(by.model('newJournal.editorial')).sendKeys(randEditorial);
             element(by.model('newJournal.area')).sendKeys(randArea);
             element(by.model('newJournal.issn')).sendKeys(randISSN);
+            element(by.model('newJournal.idArticle')).sendKeys(randIDArticle);
+  
 
             element(by.buttonText('Add')).click().then(function() {
                 browser.driver.sleep(2000);
