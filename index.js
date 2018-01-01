@@ -1,5 +1,6 @@
 "use strict";
 /* global __dirname */
+
 var express = require("express");
 var bodyParser = require('body-parser');
 var helmet = require("helmet");
@@ -7,10 +8,12 @@ var BASE_API_PATH = "/api/v1";
 var port = (process.env.PORT || 10000);
 var path = require("path");
 var cors = require("cors");
+
 // Database related variables
 var MongoClient = require("mongodb").MongoClient;
 var mdbURL = "mongodb://andopr:andopr@ds261745.mlab.com:61745/si1718-amo-journals";
 var db;
+var twitsCollection;
 
 // Database connection
 MongoClient.connect(mdbURL, { native_parser: true }, function(error, database) {
@@ -20,6 +23,7 @@ MongoClient.connect(mdbURL, { native_parser: true }, function(error, database) {
     }
 
     db = database.collection("journals");
+    twitsCollection = database.collection("infoTwitsForCharts");
     app.listen(port, () => {
         console.log("Magic is happening on port " + port);
     });
@@ -80,6 +84,7 @@ app.get(BASE_API_PATH + "/journals/search", function(request, response) {
 // Method 1: GET a collection of journals
 app.get(BASE_API_PATH + "/journals", function(request, response) {
     console.log("INFO: New GET request /journals");
+    //  db.find({}).limit(10).toArray(function(error, journals) {
     db.find({}).toArray(function(error, journals) {
         if (error) {
             console.error("WARNING: Data extraction from database failed - collection of journals");
@@ -272,4 +277,15 @@ app.delete(BASE_API_PATH + "/journals/:idJournal", function(request, response) {
             }
         });
     }
+});
+
+app.get(BASE_API_PATH + "/infoTwitsForCharts", function(req, res) {
+    twitsCollection.find().toArray(function(err, twits) {
+        if (err) {
+            res.sendStatus(500); // internal server error
+        }
+        else {
+            res.send(twits);
+        }
+    });
 });
