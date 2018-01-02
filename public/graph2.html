@@ -1,1 +1,8 @@
+<div class="form-group" style="width:30%;">
+ <label for="sel1">Select month:</label>
+ <select class="form-control" id="sel1" ng-model="selector">
+    <option ng-selected="selector == month.id" ng-click="pickMonth(month)" ng-repeat="month in monthNameList" ng-value="month.id">{{month.label}}</option>
+</select>
+</div>
+
 <div id="container"></div>

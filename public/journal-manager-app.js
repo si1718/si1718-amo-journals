@@ -21,6 +21,9 @@ angular.module("JournalManagerApp", ["ngRoute"])
             }).when("/graph2", {
                 templateUrl: "graph2.html",
                 controller: "GraphCtrl2"
+            }).when("/graph3", {
+                templateUrl: "graph3.html",
+                controller: "GraphCtrl3"
             });
 
         console.log("INFO: App Initialized");
